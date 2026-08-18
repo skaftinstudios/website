@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE 10 TON SPIRIT</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Impact&family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome for Social Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    :root {
+      --font-title: 'Impact', sans-serif;
+      --font-body: 'Montserrat', sans-serif;
+      --accent-orange: #f39c12;
+      --accent-green: #2e7d32;
+      --dark-overlay: rgba(0, 0, 0, 0.45);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: #ffffff;
+      background-color: #0d0d0d;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow-x: hidden;
+      background-size: cover;
+      background-position: center;
+      transition: background-image 0.5s ease-in-out;
+    }
+
+    /* Background Variants */
+    body.hero-bg {
+      background-image: linear-gradient(var(--dark-overlay), var(--dark-overlay)), url('ahero-bg.jpg');
+    }
+    body.abagcini-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('abagcini-bg.jpg');
+    }
+    body.bosafeleng-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('bosafeleng-bg.jpg');
+    }
+    body.synopsis-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('synopsis-bg.jpg');
+    }
+    body.info-bg {
+      background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('haero-bg.jpg');
+    }
+
+    /* Header & Brand Logo */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      width: 100%;
+      z-index: 10;
+    }
+
+    .brand-title {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s ease;
+    }
+
+    .brand-title:hover {
+      opacity: 0.8;
+    }
+
+    .top-nav {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .top-nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+    }
+
+    .top-nav a:hover {
+      color: var(--accent-orange);
+    }
+
+    /* Main Container */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      padding: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Content Panels */
+    .content-panel {
+      display: none;
+      width: 100%;
+      max-width: 600px;
+      animation: fadeIn 0.4s ease-in-out forwards;
+    }
+
+    .content-panel.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card-box {
+      background: rgba(20, 30, 25, 0.85);
+      backdrop-filter: blur(8px);
+      border-radius: 24px;
+      padding: 2.5rem;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      margin-bottom: 1.5rem;
+    }
+
+    h1, h2 {
+      font-family: var(--font-title);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      line-height: 1;
+      margin-top: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .sub-head {
+      font-weight: 800;
+      font-size: 1.2rem;
+      letter-spacing: 1px;
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+    }
+
+    .tagline {
+      font-size: 0.95rem;
+      line-height: 1.4;
+      opacity: 0.9;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .body-text {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      opacity: 0.95;
+      margin-bottom: 1rem;
+    }
+
+    /* Buttons & Controls */
+    .tab-buttons {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: var(--font-title);
+      font-size: 1.1rem;
+      padding: 0.75rem 1.8rem;
+      border-radius: 50px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .btn-orange {
+      background: linear-gradient(185deg, #f5af19, #e65c00);
+      color: #ffffff;
+      box-shadow: 0 4px 15px rgba(230, 92, 0, 0.4);
+    }
+
+    .btn-dark {
+      background: rgba(30, 30, 30, 0.85);
+      color: #d1d1d1;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-pill {
+      background: linear-gradient(185deg, #f5af19, #e65c00);
+      color: #ffffff;
+      border-radius: 50px;
+      padding: 0.8rem 2rem;
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+    }
+
+    .nav-controls {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1rem;
+    }
+
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* Footer */
+    footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 2rem;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.5rem;
+    }
+
+    .footer-links a {
+      color: #ffffff;
+      text-decoration: underline;
+      font-size: 0.85rem;
+      opacity: 0.8;
+      cursor: pointer;
+    }
+
+    .footer-links a:hover {
+      opacity: 1;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1.2rem;
+    }
+
+    .social-links a {
+      color: #ffffff;
+      font-size: 1.6rem;
+      transition: transform 0.2s ease;
+    }
+
+    .social-links a:hover {
+      transform: scale(1.15);
+    }
+
+    /* Modal Styling */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .modal-content {
+      background: #1a1a1a;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 2rem;
+      width: 90%;
+      max-width: 420px;
+      position: relative;
+    }
+
+    .close-modal {
+      position: absolute;
+      top: 1rem;
+      right: 1.2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .form-group input, .form-group select, .form-group textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border-radius: 8px;
+      border: 1px solid #444;
+      background: #2b2b2b;
+      color: #fff;
+      font-family: var(--font-body);
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+
+      main {
+        padding: 1rem;
+      }
+
+      .hero-title {
+        font-size: 2.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .card-box {
+        padding: 1.5rem;
+      }
+
+      footer {
+        flex-direction: column-reverse;
+        gap: 1.5rem;
+        align-items: center;
+        text-align: center;
+      }
+
+      .social-links {
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body class="hero-bg">
+
+  <!-- Header with Interactive Logo -->
+  <header>
+    <a href="#" class="brand-title" onclick="switchTab('hero'); return false;">The 10 Ton Spirit</a>
+    <nav class="top-nav">
+      <a onclick="switchTab('contact')">Contact Us</a>
+    </nav>
+  </header>
+
+  <!-- Main Content Areas -->
+  <main>
+    
+    <!-- 1. Hero / Landing Section -->
+    <section id="panel-hero" class="content-panel active">
+      <div class="sub-head">Coming Soon</div>
+      <p class="tagline">
+        Choose your clan, choose your ancestors and join the greatest war to ever plague planet earth.
+      </p>
+      <h1 class="hero-title">Choose Your Fighter</h1>
+      <div class="tab-buttons">
+        <button class="btn btn-orange" onclick="switchTab('abagcini')">Abagcini Order</button>
+        <button class="btn btn-dark" onclick="switchTab('bosafeleng')">Lere La Bosafeleng</button>
+        <button class="btn btn-dark" onclick="switchTab('synopsis')" style="margin-top: 0.5rem;">Read Synopsis</button>
+      </div>
+    </section>
+
+    <!-- 2. Abagcini Order Section -->
+    <section id="panel-abagcini" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Abagcini Order</h2>
+        <p class="body-text">
+          In the glittering expanse of Qaqamba City, the Abagcini Order stands as the dominant shield of humanity—a massive nation of conquerors and traditionalist sentinels. Led by the formidable Mnqobi IV, they harness the energy of Ancestral Gravity to manipulate physics, command flight, and master gravity itself.
+        </p>
+        <p class="body-text">
+          Bound by duty, the Abagcini guard the sacred Veil between the living and the spirit world, believing its destruction would collapse reality.
+        </p>
+        <button class="btn btn-pill" onclick="openModal('Abagcini Order')">Join Abagcini Now</button>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('hero')">← Back</button>
+        <button class="nav-btn" onclick="switchTab('bosafeleng')">Lere La Bosafeleng →</button>
+      </div>
+    </section>
+
+    <!-- 3. Lere La Bosafeleng Section -->
+    <section id="panel-bosafeleng" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Lere La Bosafeleng</h2>
+        <p class="body-text">
+          In the shadow of Qaqamba City, Lere la Bosafeleng operates not as a nation, but as a ruthless elite. Where others revere the Veil separating the living from the dead, the Bosafeleng view it as a cage meant to be shattered.
+        </p>
+        <p class="body-text">
+          Led by Queen Kedimetse, their members possess power dwarfing entire armies, utilizing ancient secrets of spiritual transmutation to defy death itself. To force this evolution, they have summoned Mothei III—an unmatched warrior spirit.
+        </p>
+        <button class="btn btn-pill" onclick="openModal('Lere La Bosafeleng')">Join Bosafeleng Now</button>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('abagcini')">← Abagcini Order</button>
+        <button class="nav-btn" onclick="switchTab('synopsis')">Synopsis →</button>
+      </div>
+    </section>
+
+    <!-- 4. Synopsis Section -->
+    <section id="panel-synopsis" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Synopsis</h2>
+        <p class="body-text">
+          In a hyper-soul-powered 2098 Africa shaped by the empirical discovery of the Veil (Ancestral Plane), an ancient spiritual war reaches its breaking point.
+        </p>
+        <p class="body-text">
+          When the tyrannical Abagcini Order launches a ruthless campaign to extinguish their oldest rivals, the monastic Bosafeleng, they trigger a high-stakes game of cosmic deception, soul transmutation, and brutal ancestral warfare.
+        </p>
+        <button class="btn btn-pill" onclick="openModal('General Access')">Join The War</button>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('hero')">← Home</button>
+      </div>
+    </section>
+
+    <!-- 5. Privacy Policy Section -->
+    <section id="panel-privacy" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Privacy Policy</h2>
+        <p class="body-text">
+          Your privacy matters to us. When you subscribe or submit information to <strong>The 10 Ton Spirit</strong>, we only collect your email address and chosen faction for project updates, announcements, and launch news.
+        </p>
+        <p class="body-text">
+          We do not share, sell, or distribute your personal contact information to third parties. All submissions are processed securely via Formspree. You can unsubscribe from updates at any time by contacting us.
+        </p>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('hero')">← Back to Home</button>
+      </div>
+    </section>
+
+    <!-- 6. Accessibility Statement Section -->
+    <section id="panel-accessibility" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Accessibility</h2>
+        <p class="body-text">
+          We are committed to making <strong>The 10 Ton Spirit</strong> web experience accessible to everyone, regardless of ability or technology.
+        </p>
+        <p class="body-text">
+          Our site is built with responsive layout structures, high-contrast readable text overlays, screen-reader friendly form labels, and keyboard-navigable controls. If you experience any accessibility barriers, please reach out via our Contact page.
+        </p>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('hero')">← Back to Home</button>
+      </div>
+    </section>
+
+    <!-- 7. Contact Us Section -->
+    <section id="panel-contact" class="content-panel">
+      <div class="card-box">
+        <h2 class="section-title">Contact Us</h2>
+        <p class="body-text">
+          Have questions about the universe, press inquiries, or interest in production details? Send us a direct message below.
+        </p>
+        <form action="https://formspree.io/f/mdenpedd" method="POST">
+          <div class="form-group">
+            <label for="contact-email">Your Email</label>
+            <input type="email" id="contact-email" name="email" required placeholder="your.email@domain.com">
+          </div>
+          <div class="form-group">
+            <label for="contact-faction">Select Faction</label>
+            <select id="contact-faction" name="faction">
+              <option value="Abagcini Order">Abagcini Order</option>
+              <option value="Lere La Bosafeleng">Lere La Bosafeleng</option>
+              <option value="Undecided / Spectator">Undecided / Spectator</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message</label>
+            <textarea id="contact-message" name="message" rows="4" required placeholder="Enter your message here..."></textarea>
+          </div>
+          <button type="submit" class="btn btn-orange" style="width: 100%;">Send Message</button>
+        </form>
+      </div>
+      <div class="nav-controls">
+        <button class="nav-btn" onclick="switchTab('hero')">← Back to Home</button>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-links">
+      <a onclick="switchTab('privacy')">Privacy Policy</a>
+      <a onclick="switchTab('accessibility')">Accessibility Statement</a>
+      <a onclick="switchTab('contact')">Contact Us</a>
+    </div>
+    <div class="social-links">
+      <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+      <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+    </div>
+  </footer>
+
+  <!-- Dynamic Formspree Popup Modal -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close-modal" onclick="closeModal()">&times;</span>
+      <h2 style="font-family: var(--font-title); margin-bottom: 1rem;">JOIN THE WAR</h2>
+      
+      <!-- Replace YOUR_FORMSPREE_ID with your Formspree Endpoint ID -->
+      <form action="https://formspree.io/f/YOUR_FORMSPREE_ID" method="POST">
+        <div class="form-group">
+          <label for="modal-email">Email Address</label>
+          <input type="email" id="modal-email" name="email" required placeholder="your.email@domain.com">
+        </div>
+        <div class="form-group">
+          <label for="modal-faction">Choose Your Faction</label>
+          <select id="modal-faction" name="faction">
+            <option value="Abagcini Order">Abagcini Order</option>
+            <option value="Lere La Bosafeleng">Lere La Bosafeleng</option>
+            <option value="General Access">General Access / Neutral</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-orange" style="width: 100%;">Submit & Join</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // Tab switching and Background sync
+    function switchTab(tabId) {
+      const panels = document.querySelectorAll('.content-panel');
+      panels.forEach(panel => panel.classList.remove('active'));
+
+      const body = document.body;
+      body.className = '';
+
+      if (tabId === 'hero') {
+        document.getElementById('panel-hero').classList.add('active');
+        body.classList.add('hero-bg');
+      } else if (tabId === 'abagcini') {
+        document.getElementById('panel-abagcini').classList.add('active');
+        body.classList.add('abagcini-bg');
+      } else if (tabId === 'bosafeleng') {
+        document.getElementById('panel-bosafeleng').classList.add('active');
+        body.classList.add('bosafeleng-bg');
+      } else if (tabId === 'synopsis') {
+        document.getElementById('panel-synopsis').classList.add('active');
+        body.classList.add('synopsis-bg');
+      } else if (tabId === 'privacy' || tabId === 'accessibility' || tabId === 'contact') {
+        document.getElementById('panel-' + tabId).classList.add('active');
+        body.classList.add('info-bg');
+      }
+    }
+
+    // Modal display control with selectable faction
+    function openModal(defaultFaction) {
+      const factionSelect = document.getElementById('modal-faction');
+      if (defaultFaction && factionSelect) {
+        factionSelect.value = defaultFaction;
+      }
+      document.getElementById('signupModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('signupModal').style.display = 'none';
+    }
+
+    // Close modal on outside click
+    window.onclick = function(event) {
+      const modal = document.getElementById('signupModal');
+      if (event.target === modal) {
+        closeModal();
+      }
+    };
+  </script>
+</body>
+</html>
