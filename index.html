@@ -42,7 +42,7 @@
 
     /* Background Variants */
     body.hero-bg {
-      background-image: linear-gradient(var(--dark-overlay), var(--dark-overlay)), url('ahero-bg.jpg');
+      background-image: linear-gradient(var(--dark-overlay), var(--dark-overlay)), url('hero-bg.jpg');
     }
     body.abagcini-bg {
       background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), url('abagcini-bg.jpg');
@@ -54,7 +54,7 @@
       background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('synopsis-bg.jpg');
     }
     body.info-bg {
-      background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('haero-bg.jpg');
+      background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('hero-bg.jpg');
     }
 
     /* Header & Brand Logo */
@@ -465,7 +465,7 @@
           Your privacy matters to us. When you subscribe or submit information to <strong>The 10 Ton Spirit</strong>, we only collect your email address and chosen faction for project updates, announcements, and launch news.
         </p>
         <p class="body-text">
-          We do not share, sell, or distribute your personal contact information to third parties. All submissions are processed securely via Formspree. You can unsubscribe from updates at any time by contacting us.
+          We do not share, sell, or distribute your personal contact information to third parties. All submissions are processed securely via FormBackend. You can unsubscribe from updates at any time by contacting us.
         </p>
       </div>
       <div class="nav-controls">
@@ -496,7 +496,10 @@
         <p class="body-text">
           Have questions about the universe, press inquiries, or interest in production details? Send us a direct message below.
         </p>
-        <form action="https://formspree.io/f/mdenpedd" method="POST">
+        <form action="https://www.formbackend.com/f/0ca0be32c5deeda1" method="POST" onsubmit="return validateForm('contact-email')">
+          <!-- Honeypot Field for Bot Spam Prevention -->
+          <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+          
           <div class="form-group">
             <label for="contact-email">Your Email</label>
             <input type="email" id="contact-email" name="email" required placeholder="your.email@domain.com">
@@ -539,14 +542,16 @@
     </div>
   </footer>
 
-  <!-- Dynamic Formspree Popup Modal -->
+  <!-- Dynamic FormBackend Popup Modal -->
   <div id="signupModal" class="modal">
     <div class="modal-content">
       <span class="close-modal" onclick="closeModal()">&times;</span>
       <h2 style="font-family: var(--font-title); margin-bottom: 1rem;">JOIN THE WAR</h2>
       
-      <!-- Replace YOUR_FORMSPREE_ID with your Formspree Endpoint ID -->
-      <form action="https://formspree.io/f/mdenpedd" method="POST">
+      <form action="https://www.formbackend.com/f/0ca0be32c5deeda1" method="POST" onsubmit="return validateForm('modal-email')">
+        <!-- Honeypot Field for Bot Spam Prevention -->
+        <input type="text" name="_gotcha" style="display:none !important" tabindex="-1" autocomplete="off">
+
         <div class="form-group">
           <label for="modal-email">Email Address</label>
           <input type="email" id="modal-email" name="email" required placeholder="your.email@domain.com">
@@ -602,6 +607,16 @@
 
     function closeModal() {
       document.getElementById('signupModal').style.display = 'none';
+    }
+
+    // Explicit Form Validation
+    function validateForm(emailInputId) {
+      const emailInput = document.getElementById(emailInputId);
+      if (!emailInput || !emailInput.value.trim() || !emailInput.value.includes('@')) {
+        alert("Please enter a valid email address before submitting.");
+        return false;
+      }
+      return true;
     }
 
     // Close modal on outside click
